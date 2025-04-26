@@ -1,10 +1,13 @@
-import { Button } from "@/components/ui/button";
+import { Hero } from "./components/Hero";
+import { Preview } from "./components/Preview";
+
+import styles from "./styles.module.css";
 
 export default function Home() {
 	return (
-		<div>
-			<h1>Hello Word</h1>
-			<Button>Click-me</Button>
+		<div className={`${styles.container} gap-20`}>
+			<Hero />
+			<Preview />
 		</div>
 	);
 }
