@@ -13,6 +13,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -44,6 +46,17 @@ export default function RegisterPage() {
 			name: "",
 		},
 	});
+
+	const router = useRouter();
+
+	const searchParams = useSearchParams();
+
+	useEffect(() => {
+		const username = searchParams.get("username");
+		if (username) {
+			form.setValue("username", username);
+		}
+	}, [searchParams, form]);
 
 	async function handleRegister(data: UserRegisterFormSchema) {
 		console.log(data);

@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -31,6 +32,8 @@ const ClaimUserNameFormSchema = z.object({
 type ClaimUserNameFormSchema = z.infer<typeof ClaimUserNameFormSchema>;
 
 export function ClaimUserNameForm() {
+	const router = useRouter();
+
 	const form = useForm<z.infer<typeof ClaimUserNameFormSchema>>({
 		resolver: zodResolver(ClaimUserNameFormSchema),
 		defaultValues: {
@@ -39,7 +42,9 @@ export function ClaimUserNameForm() {
 	});
 
 	async function onSubmit(data: ClaimUserNameFormSchema) {
-		console.log(data.username);
+		const { username } = data;
+
+		await router.push(`/register?username=${username}`);
 	}
 
 	return (
