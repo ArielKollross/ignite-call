@@ -17,7 +17,15 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const ClaimUserNameFormSchema = z.object({
-	username: z.string().min(2).max(50),
+	username: z
+		.string()
+		.min(3)
+		.max(20)
+		.regex(
+			/^[a-zA-Z0-9_]+$/,
+			"O nome de usuário deve conter apenas letras, números e sublinhados",
+		)
+		.transform((value) => value.toLowerCase()),
 });
 
 type ClaimUserNameFormSchema = z.infer<typeof ClaimUserNameFormSchema>;
@@ -35,7 +43,7 @@ export function ClaimUserNameForm() {
 	}
 
 	return (
-		<Card className="w-full bg-[#202024] p-4 mt-8">
+		<Card className="w-full p-4 mt-8">
 			<Form {...form}>
 				<form
 					className="flex flex-col gap-4"
@@ -48,11 +56,7 @@ export function ClaimUserNameForm() {
 							<FormItem>
 								<FormLabel className="text-gray-300">Nome de usuário</FormLabel>
 								<FormControl>
-									<Input
-										className="text-gray-300"
-										placeholder="Digite seu nome de usuário"
-										{...field}
-									/>
+									<Input placeholder="Digite seu nome de usuário" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>

@@ -37,6 +37,7 @@
 	--color-popover: var(--popover);
 	--color-card-foreground: var(--card-foreground);
 	--color-card: var(--card);
+	--color-primary-btn: var(--primary-btn);
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
@@ -51,7 +52,7 @@ body {
 	--radius: 0.625rem;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.13 0.028 261.692);
-	--card: oklch(1 0 0);
+	--card: #202024;
 	--card-foreground: oklch(0.13 0.028 261.692);
 	--popover: oklch(1 0 0);
 	--popover-foreground: oklch(0.13 0.028 261.692);
@@ -65,7 +66,7 @@ body {
 	--accent-foreground: oklch(0.21 0.034 264.665);
 	--destructive: oklch(0.577 0.245 27.325);
 	--border: oklch(0.928 0.006 264.531);
-	--input: oklch(0.928 0.006 264.531);
+	--input: #121214;
 	--ring: oklch(0.707 0.022 261.325);
 	--chart-1: oklch(0.646 0.222 41.116);
 	--chart-2: oklch(0.6 0.118 184.704);
@@ -80,6 +81,7 @@ body {
 	--sidebar-accent-foreground: oklch(0.21 0.034 264.665);
 	--sidebar-border: oklch(0.928 0.006 264.531);
 	--sidebar-ring: oklch(0.707 0.022 261.325);
+	--primary-btn: #db4437;
 }
 
 .dark {
@@ -99,7 +101,7 @@ body {
 	--accent-foreground: oklch(0.985 0.002 247.839);
 	--destructive: oklch(0.704 0.191 22.216);
 	--border: oklch(1 0 0 / 10%);
-	--input: oklch(1 0 0 / 15%);
+	--input: #121214;
 	--ring: oklch(0.551 0.027 264.364);
 	--chart-1: oklch(0.488 0.243 264.376);
 	--chart-2: oklch(0.696 0.17 162.48);
@@ -114,6 +116,7 @@ body {
 	--sidebar-accent-foreground: oklch(0.985 0.002 247.839);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.551 0.027 264.364);
+	--primary-btn: #db4437;
 }
 
 @layer base {
