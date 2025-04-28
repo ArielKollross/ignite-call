@@ -11,9 +11,11 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { api } from "@/lib/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { AxiosError } from "axios";
 import { ArrowRight } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -47,8 +49,6 @@ export default function RegisterPage() {
 		},
 	});
 
-	const router = useRouter();
-
 	const searchParams = useSearchParams();
 
 	useEffect(() => {
@@ -59,7 +59,22 @@ export default function RegisterPage() {
 	}, [searchParams, form]);
 
 	async function handleRegister(data: UserRegisterFormSchema) {
-		console.log(data);
+		try {
+			await api.post("/users", {
+				username: data.username,
+				name: data.name,
+			});
+		} catch (error) {
+			console.error("Error registering user:", error);
+			if (error instanceof AxiosError && error.response?.status === 400) {
+				form.setError("username", {
+					type: "manual",
+					message: "Nome de usuário já existe",
+				});
+			} else {
+				alert("Erro ao registrar usuário. Tente novamente mais tarde.");
+			}
+		}
 	}
 
 	return (
