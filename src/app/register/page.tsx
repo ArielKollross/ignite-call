@@ -15,7 +15,7 @@ import { api } from "@/lib/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
 import { ArrowRight } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -50,6 +50,7 @@ export default function RegisterPage() {
 	});
 
 	const searchParams = useSearchParams();
+	const router = useRouter();
 
 	useEffect(() => {
 		const username = searchParams.get("username");
@@ -64,6 +65,8 @@ export default function RegisterPage() {
 				username: data.username,
 				name: data.name,
 			});
+
+			await router.push("/register/connect-calendar");
 		} catch (error) {
 			console.error("Error registering user:", error);
 			if (error instanceof AxiosError && error.response?.status === 400) {
@@ -87,6 +90,8 @@ export default function RegisterPage() {
 					Precisamos de algumas informações para criar seu perfil! Ah, você pode
 					editar essas informações depois.
 				</p>
+
+				<div className="flex w-full mt-4 justify-end text-bold">1/4</div>
 
 				<Card className="w-full p-4 mt-8">
 					<Form {...form}>
